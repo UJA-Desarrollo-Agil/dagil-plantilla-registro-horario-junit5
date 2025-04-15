@@ -1,3 +1,4 @@
 codigo-app/.editorconfig
-codigo-app/target
-
+codigo-app/target/*
+codigo-app/target/*/*/*/*
+codigo-app/target/classes/es/vrivas/dagil/App.class

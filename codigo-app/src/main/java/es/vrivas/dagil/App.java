@@ -31,7 +31,7 @@ public class App {
         { // Conexión a la base de datos
           // Variables para la conexión a JDBC
             String sgbd = "mysql";
-            String puerto = "3306";
+            String puerto = "41006";
             String servidor = "localhost";
             String database = "gestorasistencias";
             String url = "jdbc:" + sgbd + "://" + servidor + ":" + puerto + "/" + database;
@@ -51,13 +51,13 @@ public class App {
                 Statement statement = conexion.createStatement();
 
                 // Ejecutar una consulta
-                ResultSet resultado = statement.executeQuery("SELECT * FROM RegistroHorario");
+                ResultSet resultado = statement.executeQuery("SELECT * FROM registrohorario");
 
                 // Ir procesando los distintos registros que devuelve la consulta
                 while (resultado.next()) {
                     // Retrieve data from the result set
-                    int la_persona = resultado.getInt("id_persona");
-                    int la_empresa = resultado.getInt("id_empresa");
+                    int la_persona = resultado.getInt("idPersona");
+                    int la_empresa = resultado.getInt("idEmpresa");
                     // Para las fechas, tenemos que establecer la fecha y la hora por separado
                     LocalDateTime la_entrada = resultado.getDate("entrada").toLocalDate()
                             .atTime(resultado.getTime("entrada").toLocalTime());
