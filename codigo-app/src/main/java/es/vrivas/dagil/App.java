@@ -19,14 +19,42 @@ import java.time.LocalDateTime;
  * Esta clase contiene el método main y el menú de la aplicación.
  */
 public final class App {
+    /**
+     * Clase interna con las constantes con los datos de configuración de la aplicación.
+     */
+    public static final class CONF {
+        /** Título de la aplicación. */
+        public static final String TITULO = "Gestor de asistencia de trabajadores con acceso a BBDD";
 
-    // Título de la aplicación
-    private static final String TITULO = "Gestor de asistencia de trabajadores con acceso a BBDD";
+        /** Autor/a de la aplicación. */
+        public static final String AUTOR = "Víctor Rivas <vrivas@ujaen.es>";
 
-    // Autor/a de la aplicación
-    private static final String AUTOR = "Víctor Rivas <vrivas@ujaen.es>";
+        /** Motor SGDB.*/
+        public static final String SGBD = "mysql";
 
-    /// Un objeto contenedor
+        /** Ruta para JDBC driver. */
+        public static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
+
+        /** Puerto del servidor SGBD. */
+        public static final String PORT = "41006";
+
+        /** Servidor SGBD. */
+        public static final String SERVER = "localhost";
+
+        /** Nombre de la base de datos. */
+        public static final String DATABASE = "gestorasistencias";
+
+        /** URL de conexión a la base de datos. */
+        public static final String URL = "jdbc:" + SGBD + "://" + SERVER + ":" + PORT + "/" + DATABASE;
+
+        /** Usuario de la base de datos. */
+        public static final String DBUSER = "gestorasistencias";
+
+        /** Contraseña de la base de datos. */
+        public static final String PASSWORD = "patatafrita";
+    } // Class CONF
+
+    /** Un objeto contenedor de registros horarios. */
     private static ContenedorRegistroHorario registrosHorarios = new ContenedorRegistroHorario();
 
     /**
@@ -40,24 +68,14 @@ public final class App {
      * Descargo datos de la BBDD.
      */
     public static void descargar_RegistroHorarios() {
-        // Conexión a la base de datos
-        // Variables para la conexión a JDBC
-        String sgbd = "mysql";
-        String puerto = "41006";
-        String servidor = "localhost";
-        String database = "gestorasistencias";
-        String url = "jdbc:" + sgbd + "://" + servidor + ":" + puerto + "/" + database;
-        // Es decir, URL = "jdbc:mysql://localhost:3306/asistencia";
-        String usuario = "gestorasistencias";
-        String password = "patatafrita";
 
         // Código necesario para establecer la conexión con la base de datos usando JDBC
         try {
             // Cargar el driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName(CONF.JDBC_DRIVER);
 
             // Conectar con la base de datos
-            Connection conexion = DriverManager.getConnection(url, usuario, password);
+            Connection conexion = DriverManager.getConnection(CONF.URL, CONF.DBUSER, CONF.PASSWORD);
 
             // Crear un objeto Statement (=sentencia) para realizar las consultas
             Statement statement = conexion.createStatement();
@@ -146,7 +164,7 @@ public final class App {
      * @param args Argumentos de la línea de comandos
      */
     public static void main(String[] args) {
-        System.out.println("\n" + TITULO + "    (por " + AUTOR + ")");
+        System.out.println("\n" + CONF.TITULO + "    (por " + CONF.AUTOR + ")");
 
         // Inicio datos de prueba de registros horarios
         descargar_RegistroHorarios();
