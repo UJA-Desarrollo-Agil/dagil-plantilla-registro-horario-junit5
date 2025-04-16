@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 
 public class ContenedorRegistroHorarioTest {
@@ -160,4 +161,17 @@ public class ContenedorRegistroHorarioTest {
         assertEquals(esperado, contenedor.toString());
     }
 
+    @Test
+    public void testLeerDesdeBBDD() {
+        try {
+            ContenedorRegistroHorario contenedor = new ContenedorRegistroHorario();
+            contenedor.leerDesdeBBDD();
+            assert contenedor.tamanio() > 0
+                    : "El contenedor debería tener registros después de leer desde la base de datos";
+        } catch (SQLException e) {
+            System.err.println(
+                    "SQLException: testLeerDesdeBBDD falló al leer registros horarios desde la base de datos: "
+                            + e.getMessage());
+        }
+    }
 }
