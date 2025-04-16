@@ -65,46 +65,6 @@ public final class App {
     }
 
     /**
-     * Descargo datos de la BBDD.
-     */
-    public static void descargar_RegistroHorarios() {
-
-        // Código necesario para establecer la conexión con la base de datos usando JDBC
-        try {
-            // Cargar el driver
-            Class.forName(CONF.JDBC_DRIVER);
-
-            // Conectar con la base de datos
-            Connection conexion = DriverManager.getConnection(CONF.URL, CONF.DBUSER, CONF.PASSWORD);
-
-            // Crear un objeto Statement (=sentencia) para realizar las consultas
-            Statement statement = conexion.createStatement();
-
-            // Ejecutar una consulta
-            ResultSet resultado = statement.executeQuery("SELECT * FROM registrohorario");
-
-            // Ir procesando los distintos registros que devuelve la consulta
-            while (resultado.next()) {
-                // Retrieve data from the result set
-                int laPersona = resultado.getInt("idPersona");
-                int laEmpresa = resultado.getInt("idEmpresa");
-                // Para las fechas, tenemos que establecer la fecha y la hora por separado
-                LocalDateTime laEntrada = resultado.getDate("entrada").toLocalDate()
-                        .atTime(resultado.getTime("entrada").toLocalTime());
-                LocalDateTime laSalida = resultado.getDate("salida").toLocalDate()
-                        .atTime(resultado.getTime("salida").toLocalTime());
-                registrosHorarios.add(new RegistroHorario(laPersona, laEmpresa, laEntrada, laSalida));
-            }
-            // Finalmente, cerrar la conexión junto con el resto de recursos utilizados
-            resultado.close();
-            statement.close();
-            conexion.close();
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
      * Método para responder a la opción Mostrar registros horarios ordenados cronológicamente.
      * @param opcion Número de opción que representa en el menú
      */
@@ -166,9 +126,13 @@ public final class App {
     public static void main(String[] args) {
         System.out.println("\n" + CONF.TITULO + "    (por " + CONF.AUTOR + ")");
 
-        // Inicio datos de prueba de registros horarios
-        descargar_RegistroHorarios();
-
+        // Inicio datos de prueba de registros horarios leyendo desde la base de datos.
+        try {
+            registrosHorarios.leerDesdeBBDD();
+        } catch (SQLException e) {
+            System.out.println("Error al acceder a la base de datos: " + e.getMessage());
+            return;
+        }
         boolean salir = false;
         do {
             int opcion = menu_principal();

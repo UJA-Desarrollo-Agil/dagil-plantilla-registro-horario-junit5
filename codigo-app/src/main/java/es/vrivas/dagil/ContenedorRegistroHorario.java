@@ -1,6 +1,14 @@
 package es.vrivas.dagil;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+
+import es.vrivas.dagil.App.CONF;
 
 /**
  * Contenedor de objetos de tipo RegistroHorario.
@@ -53,7 +61,7 @@ public class ContenedorRegistroHorario {
                 } catch (IllegalArgumentException e) {
                     // No se añade el objeto al contenedor
                     throw new IllegalArgumentException("Error al añadir registro horario al conjunto de una persona: "
-                    + e.getMessage());
+                            + e.getMessage());
                 }
             }
         }
@@ -100,5 +108,49 @@ public class ContenedorRegistroHorario {
         toRet.objetosContenidos.addAll(objetosContenidos);
         toRet.objetosContenidos.sort((r1, r2) -> r1.comparaEntrada(r2));
         return toRet;
+    }
+
+    /**
+     * Inserta en el contenedor los datos recogidos desde la base de datos.
+     * @exception SQLException Si hay algún error al acceder a la base de datos.
+     */
+    public void leerDesdeBBDD() throws SQLException {
+        // Vacio el contenedor
+        objetosContenidos.clear();
+
+        // Código necesario para establecer la conexión con la base de datos usando JDBC
+        try {
+            // Cargar el driver
+            Class.forName(CONF.JDBC_DRIVER);
+
+            // Conectar con la base de datos
+            Connection conexion = DriverManager.getConnection(CONF.URL, CONF.DBUSER, CONF.PASSWORD);
+
+            // Crear un objeto Statement (=sentencia) para realizar las consultas
+            Statement statement = conexion.createStatement();
+
+            // Ejecutar una consulta
+            ResultSet resultado = statement.executeQuery("SELECT * FROM registrohorario");
+
+            // Ir procesando los distintos registros que devuelve la consulta
+            while (resultado.next()) {
+                // Retrieve data from the result set
+                int laPersona = resultado.getInt("idPersona");
+                int laEmpresa = resultado.getInt("idEmpresa");
+                // Para las fechas, tenemos que establecer la fecha y la hora por separado
+                LocalDateTime laEntrada = resultado.getDate("entrada").toLocalDate()
+                        .atTime(resultado.getTime("entrada").toLocalTime());
+                LocalDateTime laSalida = resultado.getDate("salida").toLocalDate()
+                        .atTime(resultado.getTime("salida").toLocalTime());
+                objetosContenidos.add(new RegistroHorario(laPersona, laEmpresa, laEntrada, laSalida));
+            }
+            // Finalmente, cerrar la conexión junto con el resto de recursos utilizados
+            resultado.close();
+            statement.close();
+            conexion.close();
+        } catch (ClassNotFoundException | SQLException e) {
+            throw new SQLException(
+                    "ContenedorRegistriHorario:leerDesdeBBDD: Error al acceder a la base de datos: " + e.getMessage());
+        }
     }
 }
