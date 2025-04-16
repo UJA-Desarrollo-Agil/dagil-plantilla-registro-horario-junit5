@@ -1,5 +1,6 @@
 package es.vrivas.dagil;
 
+import es.vrivas.dagil.App.CONF;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -7,8 +8,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-
-import es.vrivas.dagil.App.CONF;
 
 /**
  * Contenedor de objetos de tipo RegistroHorario.
