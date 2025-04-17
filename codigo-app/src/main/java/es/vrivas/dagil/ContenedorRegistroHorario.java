@@ -52,11 +52,11 @@ public class ContenedorRegistroHorario {
      * @return El objeto que tiene el id indicado o null si no existe.
     */
     public ContenedorRegistroHorario getPorIdPersona(final int idPersona) {
-        ContenedorRegistroHorario toRet = new ContenedorRegistroHorario();
+        ContenedorRegistroHorario toReturn = new ContenedorRegistroHorario();
         for (int i = 0; i < objetosContenidos.size(); ++i) {
             if (objetosContenidos.get(i).getIdPersona() == idPersona) {
                 try {
-                    toRet.add(objetosContenidos.get(i));
+                    toReturn.add(objetosContenidos.get(i));
                 } catch (IllegalArgumentException e) {
                     // No se añade el objeto al contenedor
                     throw new IllegalArgumentException("Error al añadir registro horario al conjunto de una persona: "
@@ -64,7 +64,7 @@ public class ContenedorRegistroHorario {
                 }
             }
         }
-        return toRet;
+        return toReturn;
     }
 
     /**
@@ -103,10 +103,10 @@ public class ContenedorRegistroHorario {
      * @return El conjunto de objetos ordenados cronológicamente por fecha de entrada.
      */
     public ContenedorRegistroHorario getOrdenadosEntrada() {
-        ContenedorRegistroHorario toRet = new ContenedorRegistroHorario();
-        toRet.objetosContenidos.addAll(objetosContenidos);
-        toRet.objetosContenidos.sort((r1, r2) -> r1.comparaEntrada(r2));
-        return toRet;
+        ContenedorRegistroHorario toReturn = new ContenedorRegistroHorario();
+        toReturn.objetosContenidos.addAll(objetosContenidos);
+        toReturn.objetosContenidos.sort((r1, r2) -> r1.comparaEntrada(r2));
+        return toReturn;
     }
 
     /**
