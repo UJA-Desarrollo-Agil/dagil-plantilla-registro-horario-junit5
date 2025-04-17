@@ -2,33 +2,32 @@
 
 ## Datos personales del autor
 
-- **Nombre**: Víctor Manuel Rivas Santos.
-- **E-mail**: vrivas@ujaen.es
-- **Asignatura**: Desarrollo Ágil / Curso 2023-2024
+<!-- TODO: Completa tu nombre y tu correo -->
+
+- **Nombre**: _Tu nombre_.
+- **E-mail**: _Tu correo_.
+- **Asignatura**: Desarrollo Ágil / Curso 2024-2025
 
 ## Tablero Trello
 
-La dirección de la plantilla para usar en Trello es: [https://trello.com/b/k2wlTNR5/plantilla-practica-6-23-24](https://trello.com/b/k2wlTNR5/plantilla-practica-6-23-24)
+La dirección de la plantilla para usar en Trello es: [https://trello.com/b/k2wlTNR5/plantilla-practica-6](https://trello.com/b/k2wlTNR5/plantilla-practica-6)
 
 A continuación, en la [tabla 1](#tabla-listas-wip), muestro el WIP que he asignado en el tablero Trello:
 <anchor id="tabla-listas-wip"/>
 
-<!-- TODO Termina de completar la tabla, añadiendo las listas que faltan e indicando el WIP de cada una de las listas de Trello -->
+| Lista                           | WIP |
+| ------------------------------- | :-: |
+| Backlog                         |  5  |
+| Seleccionadas                   |  3  |
+| _Termina de completar la tabla_ | ... |
 
-| Lista          | WIP |
-| -------------- | :-: |
-| Backlog        |  5  |
-| Seleccionadas  |  1  |
-| Diseño         |  1  |
-| Validación     |  1  |
-| Implementación |  1  |
-| Hecho          | NA  |
+<!-- TODO Termina de completar la tabla, añadiendo las listas que faltan e indicando el WIP de cada una de las listas de Trello -->
 
 <sup>**Tabla 1.** Listas del tablero Trello con indicación del WIP asignado a cada una de ellas.</sup>
 
 ## Incremento número 1.
 
-El primer incremento es el proporcionado por el profesor de la asignatura. Contiene una sola HU, que es la que se pedía como OBLIGATORIA en el listado de HU proporcionado.
+El primer incremento es el proporcionado por el profesorado de la asignatura. Contiene una sola HU, que es la que se pedía como OBLIGATORIA en el listado de HU proporcionado.
 
 ### HU seleccionadas para este incremento
 
@@ -56,7 +55,7 @@ La [ilustración 2](#ilustracion-er-f14) muestra dos posibles formas de represen
 
 ![Diagrama Entidad-Relación utilizado para implementar la HU F14](./assets/img/er-f14.png)
 
-<sup>**Ilustración 2.** Diagrama Entidad-Relación con la entidad creada en la BBDD para poder desarrollar la HU F14.</sup>
+<sup>**Ilustración 2.** Diagrama Entidad-Relación con la entidad creada en la BBDD para poder desarrollar la HU F14. **No es necesario hacer los dos diagramas: cualquiera de ellos es válido**.</sup>
 
 Para realizar este diagrama Entidad-Relación, hemos utilizado una presentación de Google Drive, disponible en: https://docs.google.com/presentation/d/1nBGS0mg-JMroSNARN_p-E-zMkPpGjXdRkgH4MnBz3e8/edit?usp=sharing
 
@@ -106,6 +105,10 @@ Dado que este incremento solo constaba de una HU, una vez terminada de implement
 ![Estado del tablero Trello al terminar de desarrollar las HU del incremento 1.](./assets/img/trello-final-incr-1.png)
 
 <sup>**Ilustración 5.** Estado del tablero Trello al terminar de desarrollar las HU del incremento 1.</sup>
+
+## Incremento número 2.
+
+_Realiza la documentación del incremento número 2_.
 
 <!-- TODO: Documentar el incremento número 2 -->
 
