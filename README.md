@@ -48,7 +48,9 @@ Como puede verse en la [ilustración 1](#ilustracion-seleccionadas-incr-1), el t
 
 **Diagrama Entidad-Relación**
 
-El diagrama Entidad-Relación que puede verse en la [ilustración 2](#ilustracion-er-f14) es muy simple, dado que soloamente tenemos una entidad: RegistroHorario. De esta forma, podemos comprobar que no siempre el diagrama UML coincide al 100% con el diagrama ER.
+El diagrama Entidad-Relación que puede verse en la [ilustración 2](#ilustracion-er-f14) es muy simple, dado que soloamente tenemos una entidad: `RegistroHorario`. De esta forma, podemos comprobar que no siempre el diagrama UML coincide al 100% con el diagrama ER.
+
+La [ilustración 2](#ilustracion-er-f14) muestra dos posibles formas de representar el diagrama entidad-relación. **No es necesario que representes las dos formas, sino que puedes elegir la que desees**.
 
 <anchor id="ilustracion-er-f14"/>
 
